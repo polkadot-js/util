@@ -71,12 +71,12 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | B
   const units = withSi || withSiFull
     ? si.value === '-'
       ? withUnit
-        ? ` ${isBoolean(withUnit) ? si.text : withUnit}`
+        ? `${isBoolean(withUnit) ? si.text : withUnit} `
         : ''
-      : `${withSiFull ? ` ${si.text}` : si.value}${withUnit ? ` ${isBoolean(withUnit) ? SI[SI_MID].text : withUnit}` : ''}`
+      : `${withSiFull ? ` ${si.text}` : si.value}${withUnit ? `${isBoolean(withUnit) ? SI[SI_MID].text : withUnit} ` : ''}`
     : '';
 
-  return `${isNegative ? '-' : ''}${formatDecimal(prefix || '0')}.${postfix}${units}`;
+  return `${isNegative ? '-' : ''}${units}${formatDecimal(prefix || '0')}.${postfix}`;
 }
 
 const formatBalance = _formatBalance as BalanceFormatter;
