@@ -163,6 +163,13 @@ describe('pair', (): void => {
       expect(pair.addressRaw).toEqual(hexToU8a('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887'));
     });
 
+    it('has a valid address from a known ethereum address (20 length)', (): void => {
+      const pair = createPair({ toSS58, type: 'ethereum' }, { publicKey: hexToU8a('0x4b20cd7ff877341f2eabaa179e172e6c5fb4baa8') });
+
+      expect(pair.address).toEqual('0x4b20cD7fF877341F2EabAa179E172e6c5FB4BAA8');
+      expect(pair.addressRaw).toEqual(hexToU8a('0x4b20cd7ff877341f2eabaa179e172e6c5fb4baa8'));
+    });
+
     it('converts to json', (): void => {
       const pair = createPair({ toSS58, type: 'ethereum' }, { publicKey: PUBLICDERIVED, secretKey: SECRETDERIVED });
       const json = pair.toJson('password');

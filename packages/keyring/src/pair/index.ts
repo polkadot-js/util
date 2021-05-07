@@ -44,7 +44,7 @@ const TYPE_SIGNATURE = {
 const TYPE_ADDRESS = {
   ecdsa: (p: Uint8Array) => p.length > 32 ? blake2AsU8a(p) : p,
   ed25519: (p: Uint8Array) => p,
-  ethereum: (p: Uint8Array) => keccakAsU8a(secp256k1Expand(p)),
+  ethereum: (p: Uint8Array) => p.length === 20 ? p : keccakAsU8a(secp256k1Expand(p)),
   sr25519: (p: Uint8Array) => p
 };
 
